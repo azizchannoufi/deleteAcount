@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demande de Suppression de Compte - Styly</title>
+    <style>
+        :root {
+            --primary: #FF4F76;
+            --secondary: #FF8438;
+            --dark: #1A1A1A;
+            --light: #FFFFFF;
+            --gray: #F5F5F5;
+            --text-dark: #333333;
+            --text-light: #777777;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: var(--light);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 79, 118, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .info-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-section p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .data-list {
+            list-style-type: none;
+            margin-left: 1rem;
+        }
+
+        .data-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .data-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .delete-data {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .keep-data {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .confirmation {
+            display: none;
+            background-color: var(--light);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .confirmation h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .confirmation p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Styly</div>
+            <h1>Demande de Suppression de Compte</h1>
+            <p class="subtitle">Nous sommes désolés de vous voir partir. Utilisez ce formulaire pour demander la suppression de votre compte et de vos données.</p>
+        </header>
+
+        <div class="card">
+            <h2>Formulaire de Demande</h2>
+            <form id="deleteAccountForm">
+                <div class="form-group">
+                    <label for="email">Adresse email</label>
+                    <input type="email" id="email" name="email" required placeholder="Votre adresse email">
+                </div>
+                <div class="form-group">
+                    <label for="firstName">Prénom</label>
+                    <input type="text" id="firstName" name="firstName" required placeholder="Votre prénom">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Nom</label>
+                    <input type="text" id="lastName" name="lastName" required placeholder="Votre nom">
+                </div>
+                <button type="submit" class="btn">Demander la suppression de mon compte</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Comment demander la suppression de votre compte</h2>
+            <div class="info-section">
+                <p>Pour demander la suppression de votre compte Styly, veuillez remplir le formulaire ci-dessus avec vos informations. Une fois votre demande soumise, notre équipe traitera votre requête dans les plus brefs délais.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Données supprimées ou conservées</h2>
+            <div class="info-section">
+                <h3>Données qui seront supprimées :</h3>
+                <ul class="data-list">
+                    <li><span class="delete-data">Votre profil utilisateur</span></li>
+                    <li><span class="delete-data">Tous vos posts et publications</span></li>
+                    <li><span class="delete-data">Vos likes et réactions</span></li>
+                    <li><span class="delete-data">Vos commandes et historique d'achats</span></li>
+                    <li><span class="delete-data">Vos informations bancaires</span></li>
+                    <li><span class="delete-data">Vos mannequins personnalisés</span></li>
+                </ul>
+            </div>
+            <div class="info-section">
+                <h3>Données qui pourront être conservées :</h3>
+                <ul class="data-list">
+                    <li><span class="keep-data">Certaines données anonymisées à des fins statistiques</span></li>
+                    <li><span class="keep-data">Informations requises par la loi (factures, etc.)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="confirmationMessage" class="confirmation">
+            <h2>Demande envoyée avec succès</h2>
+            <p>Votre demande de suppression de compte a été reçue. Notre équipe va traiter votre requête et vous contactera si nécessaire.</p>
+            <p>Merci d'avoir utilisé Styly.</p>
+        </div>
+
+        <footer>
+            <p>Styly &copy; 2025. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('deleteAccountForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupérer les données du formulaire
+            const email = document.getElementById('email').value;
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            
+            // Préparer les données pour l'API
+            const userData = {
+                email: email,
+                firstName: firstName,
+                lastName: lastName
+            };
+            
+            // Ici, vous devez remplacer l'URL par celle de votre API
+            // Exemple d'appel à l'API :
+            /*
+            fetch('https://votre-api.com/delete-account', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Afficher le message de confirmation
+                document.getElementById('confirmationMessage').style.display = 'block';
+                // Rediriger ou effectuer d'autres actions si nécessaire
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert('Une erreur s\'est produite. Veuillez réessayer.');
+            });
+            */
+            
+            // Pour l'exemple, nous affichons simplement le message de confirmation
+            document.getElementById('confirmationMessage').style.display = 'block';
+            
+            // Faire défiler jusqu'au message de confirmation
+            document.getElementById('confirmationMessage').scrollIntoView({ behavior: 'smooth' });
+            
+            // Réinitialiser le formulaire
+            document.getElementById('deleteAccountForm').reset();
+        });
+    </script>
+</body>
+</html>
