@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="icon" type="image/png" href="assets/logo.png" />
-
+    <link rel="icon" type="image/png" href="assets/logo.png" />
     <title>Demande de Suppression de Compte - Styly</title>
     <style>
         :root {
@@ -123,6 +122,15 @@
             transform: translateY(0);
         }
 
+        .btn-secondary {
+            background: var(--gray);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
         .info-section {
             margin-bottom: 1.5rem;
         }
@@ -195,6 +203,48 @@
             font-size: 0.9rem;
         }
 
+        .checkbox-group {
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.75rem;
+            transform: scale(1.2);
+        }
+
+        .checkbox-option label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .options-section {
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .option-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-left: 2rem;
+            margin-top: 0.25rem;
+        }
+
+        .selection-summary {
+            background-color: rgba(255, 79, 118, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -229,6 +279,57 @@
                     <label for="lastName">Nom</label>
                     <input type="text" id="lastName" name="lastName" required placeholder="Votre nom">
                 </div>
+                
+                <div class="options-section">
+                    <h3>Que souhaitez-vous supprimer ?</h3>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="deleteAll" name="deleteOptions" value="all" checked>
+                            <label for="deleteAll">Supprimer toutes mes données</label>
+                        </div>
+                        <p class="option-description">Cette option supprime l'intégralité de votre compte et de vos données.</p>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="deletePosts" name="deleteOptions" value="posts">
+                            <label for="deletePosts">Supprimer mes posts et publications</label>
+                        </div>
+                        <p class="option-description">Supprime tous vos posts, images et publications partagées sur Styly.</p>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="deleteReactions" name="deleteOptions" value="reactions">
+                            <label for="deleteReactions">Supprimer mes réactions et likes</label>
+                        </div>
+                        <p class="option-description">Supprime tous vos likes, commentaires et réactions aux publications d'autres utilisateurs.</p>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="deleteOrders" name="deleteOptions" value="orders">
+                            <label for="deleteOrders">Supprimer mes commandes</label>
+                        </div>
+                        <p class="option-description">Supprime votre historique de commandes et d'achats.</p>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="deleteBrand" name="deleteOptions" value="brand">
+                            <label for="deleteBrand">Supprimer mon brand</label>
+                        </div>
+                        <p class="option-description">Supprime votre marque personnelle et toutes ses données associées.</p>
+                    </div>
+                    
+                   
+                    
+                    <div id="selectionSummary" class="selection-summary">
+                        Vous avez sélectionné la suppression complète de votre compte.
+                    </div>
+                </div>
+                
                 <button type="submit" class="btn">Demander la suppression de mon compte</button>
             </form>
         </div>
@@ -236,14 +337,14 @@
         <div class="card">
             <h2>Comment demander la suppression de votre compte</h2>
             <div class="info-section">
-                <p>Pour demander la suppression de votre compte Styly, veuillez remplir le formulaire ci-dessus avec vos informations. Une fois votre demande soumise, notre équipe traitera votre requête dans les plus brefs délais.</p>
+                <p>Pour demander la suppression de votre compte Styly, veuillez remplir le formulaire ci-dessus avec vos informations et sélectionner les données que vous souhaitez supprimer. Une fois votre demande soumise, notre équipe traitera votre requête dans les plus brefs délais.</p>
             </div>
         </div>
 
         <div class="card">
             <h2>Données supprimées ou conservées</h2>
             <div class="info-section">
-                <h3>Données qui seront supprimées :</h3>
+                <h3>Données qui peuvent être supprimées :</h3>
                 <ul class="data-list">
                     <li><span class="delete-data">Votre profil utilisateur</span></li>
                     <li><span class="delete-data">Tous vos posts et publications</span></li>
@@ -251,6 +352,7 @@
                     <li><span class="delete-data">Vos commandes et historique d'achats</span></li>
                     <li><span class="delete-data">Vos informations bancaires</span></li>
                     <li><span class="delete-data">Vos mannequins personnalisés</span></li>
+                    <li><span class="delete-data">Votre marque personnelle</span></li>
                 </ul>
             </div>
             <div class="info-section">
@@ -274,51 +376,138 @@
     </div>
 
     <script>
-        document.getElementById('deleteAccountForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteAllCheckbox = document.getElementById('deleteAll');
+            const otherCheckboxes = document.querySelectorAll('input[name="deleteOptions"]:not(#deleteAll)');
+            const selectionSummary = document.getElementById('selectionSummary');
             
-            // Récupérer les données du formulaire
-            const email = document.getElementById('email').value;
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            
-            // Préparer les données pour l'API
-            const userData = {
-                email: email,
-                firstName: firstName,
-                lastName: lastName
-            };
-            
-            // Ici, vous devez remplacer l'URL par celle de votre API
-            // Exemple d'appel à l'API :
-            /*
-            fetch('https://votre-api.com/delete-account', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Afficher le message de confirmation
-                document.getElementById('confirmationMessage').style.display = 'block';
-                // Rediriger ou effectuer d'autres actions si nécessaire
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-                alert('Une erreur s\'est produite. Veuillez réessayer.');
+            // Gérer la sélection de "Supprimer toutes mes données"
+            deleteAllCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    otherCheckboxes.forEach(checkbox => {
+                        checkbox.checked = false;
+                        checkbox.disabled = true;
+                    });
+                    updateSelectionSummary();
+                } else {
+                    otherCheckboxes.forEach(checkbox => {
+                        checkbox.disabled = false;
+                    });
+                }
             });
-            */
             
-            // Pour l'exemple, nous affichons simplement le message de confirmation
-            document.getElementById('confirmationMessage').style.display = 'block';
+            // Gérer la sélection des autres options
+            otherCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        deleteAllCheckbox.checked = false;
+                    }
+                    updateSelectionSummary();
+                });
+            });
             
-            // Faire défiler jusqu'au message de confirmation
-            document.getElementById('confirmationMessage').scrollIntoView({ behavior: 'smooth' });
+            // Mettre à jour le résumé de sélection
+            function updateSelectionSummary() {
+                if (deleteAllCheckbox.checked) {
+                    selectionSummary.textContent = "Vous avez sélectionné la suppression complète de votre compte.";
+                    return;
+                }
+                
+                const selectedOptions = Array.from(otherCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => {
+                        switch(checkbox.value) {
+                            case 'posts': return 'vos posts et publications';
+                            case 'reactions': return 'vos réactions et likes';
+                            case 'orders': return 'vos commandes';
+                            case 'brand': return 'votre brand';
+                            case 'profile': return 'votre profil utilisateur';
+                            default: return '';
+                        }
+                    });
+                
+                if (selectedOptions.length === 0) {
+                    selectionSummary.textContent = "Veuillez sélectionner au moins une option de suppression.";
+                } else {
+                    selectionSummary.textContent = "Vous avez sélectionné la suppression de : " + selectedOptions.join(', ') + ".";
+                }
+            }
             
-            // Réinitialiser le formulaire
-            document.getElementById('deleteAccountForm').reset();
+            // Gérer la soumission du formulaire
+            document.getElementById('deleteAccountForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Récupérer les données du formulaire
+                const email = document.getElementById('email').value;
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                
+                // Récupérer les options sélectionnées
+                const selectedOptions = [];
+                if (deleteAllCheckbox.checked) {
+                    selectedOptions.push('all');
+                } else {
+                    otherCheckboxes.forEach(checkbox => {
+                        if (checkbox.checked) {
+                            selectedOptions.push(checkbox.value);
+                        }
+                    });
+                }
+                
+                // Vérifier qu'au moins une option est sélectionnée
+                if (selectedOptions.length === 0) {
+                    alert('Veuillez sélectionner au moins une option de suppression.');
+                    return;
+                }
+                
+                // Préparer les données pour l'API
+                const userData = {
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    deleteOptions: selectedOptions
+                };
+                
+                console.log('Données à envoyer à l\'API:', userData);
+                
+                // Ici, vous devez remplacer l'URL par celle de votre API
+                // Exemple d'appel à l'API :
+                /*
+                fetch('https://votre-api.com/delete-account', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Afficher le message de confirmation
+                    document.getElementById('confirmationMessage').style.display = 'block';
+                    // Rediriger ou effectuer d'autres actions si nécessaire
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    alert('Une erreur s\'est produite. Veuillez réessayer.');
+                });
+                */
+                
+                // Pour l'exemple, nous affichons simplement le message de confirmation
+                document.getElementById('confirmationMessage').style.display = 'block';
+                
+                // Faire défiler jusqu'au message de confirmation
+                document.getElementById('confirmationMessage').scrollIntoView({ behavior: 'smooth' });
+                
+                // Réinitialiser le formulaire
+                document.getElementById('deleteAccountForm').reset();
+                
+                // Réinitialiser l'état des cases à cocher
+                otherCheckboxes.forEach(checkbox => {
+                    checkbox.disabled = false;
+                });
+                
+                updateSelectionSummary();
+            });
         });
     </script>
 </body>
